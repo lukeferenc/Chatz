@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
   colortext:{
     fontSize: 16,
     fontWeight: "300",
-    color: '#15aea4',
+    color: '#f6f5f4',
     opacity: 1,
     padding: 5,
   },
