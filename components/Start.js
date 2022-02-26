@@ -91,17 +91,17 @@ const styles = StyleSheet.create({
 
   inputBox: {
     flexDirection: 'row',
-    width:"70%",
-    borderColor: '#15aea4', 
-    borderWidth: 1,
-    padding: 10
+    width:"90%",
+    borderColor: '#f6f5f4', 
+    borderWidth: 2,
+    padding: 15
   },
   
   input: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "300",
-    color: '#15aea4',
-    opacity: 0.5
+    color: '#f6f5f4',
+    opacity: 1
   },
 
   button: {
