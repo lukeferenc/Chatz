@@ -20,10 +20,10 @@ export default class Start extends React.Component {
           </View>
           <View style={styles.box1}>
             <View style={styles.inputBox}>
-              <Image source={icon} style={styles.usericon} />
+              <Image source={icon} style={styles.icon1} />
               <TextInput
                 style={styles.input}
-                onChangeText={(text) => this.setState({ name: text})}
+                onChangeText={(text) => this.setState({text})}
                 value={this.state.name}
                 placeholder='Your Name'
               />
@@ -38,7 +38,7 @@ export default class Start extends React.Component {
             </View>
             </View>
               <Pressable style={styles.button} onPress={() => this.props.navigation.navigate('Chat')}>  
-                  <Text style={styles.buttontext}>Start Chatting</Text>
+                  <Text style={styles.buttontext}>Lets Chatz</Text>
               </Pressable>
           </View>
         </ImageBackground>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  icon:{
+  icon1:{
     padding: 10,
     margin: 10,
     height: 20,
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     width: "70%"
   },
 
-  inputbox: {
+  inputBox: {
     flexDirection: 'row',
     width:"70%",
     borderColor: '#15aea4', 
