@@ -24,8 +24,14 @@ export default class Chat extends React.Component {
             name: 'React Native',
             avatar: 'https://placeimg.com/140/140/any',
           },
-        },
-      ],
+         },
+         {
+          _id: 2,
+          text: 'This is a system message',
+          createdAt: new Date(),
+          system: true,
+         },
+      ]
     })
   }
 
@@ -33,6 +39,19 @@ export default class Chat extends React.Component {
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
     }))
+  }
+
+  renderBubble(props) {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: '#000'
+          }
+        }}
+      />
+    )
   }
 
   render() {
