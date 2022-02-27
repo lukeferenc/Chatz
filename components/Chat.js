@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { GiftedChat } from 'react-native-gifted-chat'
+import { Bubble, SystemMessage, GiftedChat } from 'react-native-gifted-chat';
 import {Platform, KeyboardAvoidingView } from 'react-native';
 
 export default class Chat extends React.Component {
@@ -54,6 +54,19 @@ export default class Chat extends React.Component {
     )
   }
 
+  renderSystemMessage(props) {
+    return (
+      <SystemMessage
+        {...props}
+        textStyle={{
+          color: "#ff2700",
+        }}
+      />
+    );
+  }
+
+
+
   render() {
 
     let bgColor = this.props.route.params.bgColor
@@ -68,6 +81,8 @@ export default class Chat extends React.Component {
           }}
         >
           <GiftedChat
+          renderBubble={this.renderBubble.bind(this)}
+          renderSystemMessage={this.renderSystemMessage.bind(this)}
             messages={this.state.messages}
             onSend={messages => this.onSend(messages)}
             user={{

@@ -1,7 +1,17 @@
 import React from 'react';
 import { ImageBackground, Image, StyleSheet, View, Text, TextInput, Pressable} from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 import BGI from '../assets/BGI.png';
 import icon from '../assets/icon.svg' ;
+
+
+const  colors = {
+  color1: "#52e565",
+  color2: "#ec7b5b",
+  color3: "#e9ec5b",
+  color4: "#8b8dea"
+}
+
 
 export default class Start extends React.Component {
 
@@ -9,6 +19,10 @@ export default class Start extends React.Component {
     super(props);
     this.state = { text: '' };
   }
+
+  changeBgColor = newColor => {
+    this.setState({ bgColor: newColor });
+  };
 
   render() {
     return (
@@ -28,18 +42,51 @@ export default class Start extends React.Component {
                 placeholder='Your Name'
               />
             </View>
+        
             <View style={styles.colorbox}>
-              <Text style={styles.colortext}>Choose Background Color</Text>
-              <View style={styles.colorpalette}>
-                  <View style={styles.color1}></View>
-                  <View style={styles.color2}></View>
-                  <View style={styles.color3}></View>
-                  <View style={styles.color4}></View>
+          
+            <View style={styles.colortextbox}>
+              <Text style= {styles.colortext}>Choose Background Color:</Text>
+              </View>
+
+              <View style={styles.color}>
+                <TouchableOpacity accessible={true}
+                      accessibilityLabel="green background"
+                      accessibilityHint="Adds a green background to the chat screen"
+                      accessibilityRole="button" 
+                      style={styles.color1} onPress={() => this.changeBgColor(colors.color1)}></TouchableOpacity>
+              <TouchableOpacity accessible={true}
+                      accessibilityLabel="red background"
+                      accessibilityHint="Adds a red background to the chat screen"
+                      accessibilityRole="button" 
+              style={styles.color2}  onPress={() => this.changeBgColor(colors.color2)}></TouchableOpacity>
+              <TouchableOpacity accessible={true}
+                      accessibilityLabel="yellow background"
+                      accessibilityHint="Adds a yellow background to the chat screen"
+                      accessibilityRole="button" 
+              style={styles.color3} onPress={() => this.changeBgColor(colors.color3)}></TouchableOpacity>
+              <TouchableOpacity accessible={true}
+                      accessibilityLabel="purple background"
+                      accessibilityHint="Adds a purple background to the chat screen"
+                      accessibilityRole="button" 
+              style={styles.color4} onPress={() => this.changeBgColor(colors.color4)}></TouchableOpacity>
+              </View>
             </View>
-            </View>
-              <Pressable style={styles.button} onPress={() => this.props.navigation.navigate('Chat')}>  
-                  <Text style={styles.buttontext}>Lets Chatz</Text>
-              </Pressable>
+            <Pressable
+                style={styles.button}
+                accessible={true}
+                accessibilityLabel="Tab here to Start chatting"
+                accessibilityHint="Enter the chat screen"
+                accessibilityRole="button"
+                onPress={() =>
+                    this.props.navigation.navigate('Chat', {
+                        name: this.state.name,
+                        bgColor: this.state.bgColor,
+                    })
+                }
+            >
+                <Text style={styles.buttonText}>Start Chatting</Text>
+            </Pressable>
           </View>
         </ImageBackground>
       </View>
@@ -110,12 +157,36 @@ const styles = StyleSheet.create({
     width: "70%"
   },
 
+  buttonheight: { 
+    backgroundColor: '6c6b6a',
+    height: 60, 
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'stretch'
+  },
+
   buttontext: {
     fontSize: 20,
     fontWeight: "bold",
     color: 'white',
     textAlign: "center",
     padding: 20
+  },
+
+  color: { 
+    width: 45,
+    height: 45,
+    borderRadius: 20, 
+    marginRight: 10,
+    marginLeft: 0,
+    width: 250,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexShrink: 0,
+    alignItems: "flex-start",
+    flexShrink:0,
+    
   },
 
   colorbox:{
@@ -137,6 +208,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: 5,
+  },
+
+  colorTextBox: {
+    alignItems: "stretch",
+    width: '88%',
+     flexDirection: 'row',
+     justifyContent: 'space-between',
   },
 
   color1:{
