@@ -55,6 +55,9 @@ export default class Chat extends React.Component {
   }
 
   render() {
+
+    let bgColor = this.props.route.params.bgColor
+
     return (
       <View style={styles.container}>
         <View
