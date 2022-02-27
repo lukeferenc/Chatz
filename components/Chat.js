@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Bubble, SystemMessage, GiftedChat } from 'react-native-gifted-chat';
+import { View, StyleSheet } from 'react-native';
+import { GiftedChat, Bubble } from 'react-native-gifted-chat'
 import {Platform, KeyboardAvoidingView } from 'react-native';
 
 export default class Chat extends React.Component {
@@ -27,7 +27,7 @@ export default class Chat extends React.Component {
          },
          {
           _id: 2,
-          text: 'This is a system message',
+          text: 'Stumbled in',
           createdAt: new Date(),
           system: true,
          },
@@ -54,45 +54,31 @@ export default class Chat extends React.Component {
     )
   }
 
-  renderSystemMessage(props) {
-    return (
-      <SystemMessage
-        {...props}
-        textStyle={{
-          color: "#ff2700",
-        }}
-      />
-    );
-  }
-
-
-
   render() {
 
-    let bgColor = this.props.route.params.bgColor
-
+    const { bgcolor } = this.props.route.params;
+    
     return (
-      <View style={styles.container}>
-        <View
-          style={{
-              backgroundColor: bgColor,
-              width: '100%',
-              height: '100%',
-          }}
-        >
-          <GiftedChat
-          renderBubble={this.renderBubble.bind(this)}
-          renderSystemMessage={this.renderSystemMessage.bind(this)}
-            messages={this.state.messages}
-            onSend={messages => this.onSend(messages)}
-            user={{
-              _id: 1,
-            }}
-          />
-          { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null
-          }
+
+      <View style={{
+        flex: 1,
+            backgroundColor: bgcolor,
+            width: '100%',
+            height: '100%',
+          }}>
+          <View style={styles.giftedchat}>
+              <GiftedChat
+              renderBubble={this.renderBubble.bind(this)}
+              messages={this.state.messages}
+              onSend={messages => this.onSend(messages)}
+              user={{
+                  _id: 1,
+              }}
+              />                
+          </View>
+
+                { Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null}
         </View>
-      </View>
     );
   };
 }
@@ -103,4 +89,13 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: 'column',
   },
+
+  giftedchat: {
+    flex: 1,
+    width: "80%",
+    paddingBottom: 15,
+    justifyContent: "center",
+    borderRadius: 5,
+  }
 });
+

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageBackground, Image, StyleSheet, View, Text, TextInput, Pressable} from 'react-native';
-import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import BGI from '../assets/BGI.png';
 import icon from '../assets/icon.svg' ;
 
@@ -10,37 +10,49 @@ const  colors = {
   color2: "#ec7b5b",
   color3: "#e9ec5b",
   color4: "#8b8dea"
-}
-
+};
 
 export default class Start extends React.Component {
 
   constructor(props) {
-    super(props);
-    this.state = { text: '' };
+      super(props);
+      this.state = { 
+          name: '',
+          bgcolor: ''
+      };
   }
 
-  changeBgColor = newColor => {
-    this.setState({ bgColor: newColor });
+  changeBgColor = (newColor) => {
+    this.setState({ bgcolor: newColor });
   };
+
 
   render() {
     return (
       <View style={styles.container}>
 
         <ImageBackground source={BGI} resizeMode='cover' style={styles.BGI}>
-          <View style={styles.titleBox}> 
-              <Text style={styles.title}>Chatz</Text> 
-          </View>
+        <View 
+          accessible={false}
+          accessibilityLabel="El Chatz app"
+          accessibilityHint="Title"
+          accessibilityRole="header"
+          style={styles.titlebox}>
+              <Text style={styles.title}>Chatz</Text>                
+        </View>
           <View style={styles.box1}>
             <View style={styles.inputBox}>
               <Image source={icon} style={styles.icon1} />
               <TextInput
+                accessible={true}
+                accessibilityLabel="Type your name here"
+                accessibilityHint="Lets you enter your name"
+                accessibilityRole="search"
                 style={styles.input}
-                onChangeText={(text) => this.setState({text})}
+                onChangeText={(text) => this.setState({name: text})}
                 value={this.state.name}
-                placeholder='Your Name'
-              />
+                placeholder='Your Name'> 
+              </TextInput>
             </View>
         
             <View style={styles.colorbox}>
@@ -72,21 +84,20 @@ export default class Start extends React.Component {
               style={styles.color4} onPress={() => this.changeBgColor(colors.color4)}></TouchableOpacity>
               </View>
             </View>
-            <Pressable
-                style={styles.button}
-                accessible={true}
-                accessibilityLabel="Tab here to Start chatting"
-                accessibilityHint="Enter the chat screen"
-                accessibilityRole="button"
-                onPress={() =>
-                    this.props.navigation.navigate('Chat', {
-                        name: this.state.name,
-                        bgColor: this.state.bgColor,
-                    })
-                }
-            >
-                <Text style={styles.buttonText}>Start Chatting</Text>
-            </Pressable>
+
+            <Pressable 
+              accessible={true}
+              accessibilityLabel="Start Chat"
+              accessibilityHint="Navigating to chat page"
+              accessibilityRole="button"
+              style={styles.button}  
+              onPress={() =>
+                  this.props.navigation.navigate("Chat", {
+                      name: this.state.name,
+                      bgcolor: this.state.bgcolor,
+                  })}>  
+                  <Text style={styles.buttontext}>Letz Chatz</Text>
+            </Pressable> 
           </View>
         </ImageBackground>
       </View>
