@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   },
 
   buttonheight: { 
-    backgroundColor: '6c6b6a',
+    backgroundColor: '#6c6b6a',
     height: 60, 
     width: '100%',
     flexDirection: 'row',
