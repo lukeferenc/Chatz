@@ -59,6 +59,27 @@ export default class Chat extends React.Component {
     })
   }
 
+  onCollectionUpdate = (querySnapshot) => { 
+    const messages = [];
+    querySnapshot.forEach((doc) => {
+        let data = doc.data();
+        messages.push({
+            _id: data._id,
+            text: data.text,
+            createdAt: data.createdAt.toDate(),
+            user: data.user
+        });
+    });
+    this.setState({
+        messages: messages
+    });
+  };
+
+  componentWillUnmount() {
+      this.authUnsubscribe();
+      this.unsubscribe();
+  }
+
   onSend(messages = []) {
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
