@@ -2,6 +2,23 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat'
 import {Platform, KeyboardAvoidingView } from 'react-native';
+import firebase from 'firebase';
+import "firebase/firestore";
+
+
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAUlUPBOAFA6e3no-IpsExvlEp0z6a2PB8",
+  authDomain: "chatz-9e906.firebaseapp.com",
+  projectId: "chatz-9e906",
+  storageBucket: "chatz-9e906.appspot.com",
+  messagingSenderId: "360628659555",
+  appId: "1:360628659555:web:705db080f815404af85f56"
+};
+
+
+
 
 export default class Chat extends React.Component {
   
@@ -10,7 +27,14 @@ export default class Chat extends React.Component {
     this.state = {
       messages: [],
     }
+  };
+
+
+  if (!firebase.apps.length){
+    firebase.initializeApp(firebaseConfig);
   }
+
+  this.referenceChatMessages = firebase.firestore().collection("messages");
 
   componentDidMount() {
     this.setState({
