@@ -108,6 +108,9 @@ export default class Start extends React.Component {
 const styles = StyleSheet.create({
   container: {
       flex: 1,
+      justifyContent: "space-between", 
+      flexDirection: "column",
+      alignItems: "center"
   },
   BGI : {
     flex: 1,
@@ -138,7 +141,7 @@ const styles = StyleSheet.create({
     padding: 20
   },
 
-  box: {
+  box1: {
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
