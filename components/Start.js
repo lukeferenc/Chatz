@@ -2,7 +2,7 @@ import React from 'react';
 import { ImageBackground, Image, StyleSheet, View, Text, TextInput, Pressable} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import BGI from '../assets/BGI.png';
-import icon from '../assets/icon.svg' ;
+import icon from '../assets/icon.png' ;
 
 
 const  colors = {
