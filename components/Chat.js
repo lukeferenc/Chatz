@@ -9,6 +9,7 @@ import "firebase/firestore";
 
 
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyAUlUPBOAFA6e3no-IpsExvlEp0z6a2PB8",
   authDomain: "chatz-9e906.firebaseapp.com",
