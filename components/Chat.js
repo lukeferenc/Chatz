@@ -1,24 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Platform, KeyboardAvoidingView, LogBox } from 'react-native';
-import { GiftedChat, Bubble } from 'react-native-gifted-chat'
+import { View, StyleSheet, Platform, KeyboardAvoidingView } from 'react-native';
+import { GiftedChat, Bubble, InputToolbar } from 'react-native-gifted-chat'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NetInfo from '@react-native-community/netinfo';
 import firebase from 'firebase';
 import "firebase/firestore";
-
-
-
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAUlUPBOAFA6e3no-IpsExvlEp0z6a2PB8",
-  authDomain: "chatz-9e906.firebaseapp.com",
-  projectId: "chatz-9e906",
-  storageBucket: "chatz-9e906.appspot.com",
-  messagingSenderId: "360628659555",
-  appId: "1:360628659555:web:705db080f815404af85f56"
-};
-
 
 
 export default class Chat extends React.Component {
