@@ -1,6 +1,5 @@
 import React from 'react';
-import { ImageBackground, Image, StyleSheet, View, Text, TextInput, Pressable} from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ImageBackground, Image, StyleSheet, View, Text, TextInput, Pressable, TouchableOpacity} from 'react-native';
 import BGI from '../assets/BGI.png';
 import icon from '../assets/icon.png' ;
 
