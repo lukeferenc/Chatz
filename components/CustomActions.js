@@ -9,11 +9,6 @@ import "firebase/firestore";
 
 export default class CustomActions extends React.Component {
 
-  state = {
-    image: null,
-    location: null
-  }
-
   pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     try {
@@ -24,7 +19,7 @@ export default class CustomActions extends React.Component {
             console.error(error);
             });
             if (!result.cancelled) {
-                const imageUrl = await this.uploadImageFetch(result.uri);
+                const imageUrl = await this.uploadImage(result.uri);
                 this.props.onSend({ image: imageUrl });
             }
         }
@@ -44,7 +39,7 @@ export default class CustomActions extends React.Component {
                 console.error(error);
             });
             if (!result.cancelled) {
-                const imageUrl = await this.uploadImageFetch(result.uri);
+                const imageUrl = await this.uploadImage(result.uri);
                 this.props.onSend({ image: imageUrl });
             }
         }
@@ -76,7 +71,7 @@ export default class CustomActions extends React.Component {
     }
   };
 
-  uploadImageFetch = async (uri) => {
+  uploadImage = async (uri) => {
     const blob = await new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();
         xhr.onload = function () {
@@ -98,10 +93,10 @@ export default class CustomActions extends React.Component {
 
     const snapshot = await ref.put(blob);
 
-    blob.close();
+        blob.close();
 
     return await snapshot.ref.getDownloadURL();
-  };
+};
 
   onActionPress = () => {
     const options = [
