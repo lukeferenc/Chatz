@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   input: {
     fontSize: 20,
     fontWeight: "300",
-    color: '#f6f5f4',
+    color: '#141414',
     opacity: 1
   },
 

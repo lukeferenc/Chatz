@@ -35,7 +35,9 @@ export default class Chat extends React.Component {
                 _id: "",
                 name: "",
             },
-            isConnected: false 
+            isConnected: false,
+            image: null,
+            location: null,
         };
 
 
@@ -114,8 +116,11 @@ export default class Chat extends React.Component {
             _id: data._id,
             text: data.text,
             createdAt: data.createdAt.toDate(),
-            user: data.user
+            user: data.user,
+            image: data.image || null,
+            location: data.location || null,
         });
+        
     });
     this.setState({
         messages: messages
@@ -127,11 +132,23 @@ export default class Chat extends React.Component {
       this.unsubscribe();
   }
 
+
+    async saveMessages() {
+        try {
+            await AsyncStorage.setItem('messages', JSON.stringify(this.state.messages));
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
+
   onSend(messages = []) {
+      console.log(messages,"messages")
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, messages),
     }), () => {
       this.addMessages();
+      this.saveMessages();
     })
     
   }
@@ -142,7 +159,9 @@ export default class Chat extends React.Component {
         _id: message._id,
         text: message.text || "",
         createdAt: message.createdAt,
-        user: this.state.user
+        user: this.state.user,
+        image: message.image || "",
+        location: message.location || null,
     });
   }
 

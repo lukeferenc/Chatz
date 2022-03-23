@@ -9,6 +9,7 @@ import "firebase/firestore";
 
 export default class CustomActions extends React.Component {
 
+
   pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     try {
@@ -72,18 +73,18 @@ export default class CustomActions extends React.Component {
   };
 
   uploadImage = async (uri) => {
-    const blob = await new Promise((resolve, reject) => {
-        const xhr = new XMLHttpRequest();
-        xhr.onload = function () {
-            resolve(xhr.response);
-        };
-        xhr.onerror = function (e) {
-            console.log(e);
-            reject(new TypeError("Network request failed"));
-        };
-        xhr.responseType = "blob";
-        xhr.open("GET", uri, true);
-        xhr.send(null);
+   const blob = await new Promise((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      xhr.onload = function () {
+        resolve(xhr.response);
+      };
+      xhr.onerror = function (e) {
+        console.log(e);
+        reject(new TypeError("Network request failed"));
+      };
+      xhr.responseType = "blob";
+      xhr.open("GET", uri, true);
+      xhr.send(null);
     });
 
     const imageNameBefore = uri.split("/");
@@ -93,7 +94,7 @@ export default class CustomActions extends React.Component {
 
     const snapshot = await ref.put(blob);
 
-        blob.close();
+   // blob.close();
 
     return await snapshot.ref.getDownloadURL();
 };
