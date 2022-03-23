@@ -108,29 +108,28 @@ export default class Chat extends React.Component {
 
     
 
-  onCollectionUpdate = (querySnapshot) => { 
-    const messages = [];
-    querySnapshot.forEach((doc) => {
-        let data = doc.data();
-        messages.push({
-            _id: data._id,
-            text: data.text,
-            createdAt: data.createdAt.toDate(),
-            user: data.user,
-            image: data.image || null,
-            location: data.location || null,
+    onCollectionUpdate = (querySnapshot) => { 
+        const messages = [];
+        querySnapshot.forEach((doc) => {
+            let data = doc.data();
+            messages.push({
+                _id: data._id,
+                text: data.text,
+                createdAt: data.createdAt.toDate(),
+                user: data.user,
+                image: data.image || null,
+                location: data.location || null,
+            });
         });
-        
-    });
-    this.setState({
-        messages: messages
-    });
-  };
+        this.setState({
+            messages: messages
+        });
+    };
 
-  componentWillUnmount() {
-      this.authUnsubscribe();
-      this.unsubscribe();
-  }
+    componentWillUnmount() {
+        this.authUnsubscribe();
+        this.unsubscribe();
+    }
 
 
     async saveMessages() {
@@ -142,28 +141,27 @@ export default class Chat extends React.Component {
     }
 
 
-  onSend(messages = []) {
-      console.log(messages,"messages")
-    this.setState(previousState => ({
-      messages: GiftedChat.append(previousState.messages, messages),
-    }), () => {
-      this.addMessages();
-      this.saveMessages();
-    })
-    
-  }
+    onSend(messages = []) {
+        console.log(messages,"messages")
+            this.setState(previousState => ({
+            messages: GiftedChat.append(previousState.messages, messages),
+        }), () => {
+            this.addMessages();
+            this.saveMessages();
+        })
+    }
 
-  addMessages() { 
-    const message = this.state.messages[0];
-    this.referenceChatMessages.add({
-        _id: message._id,
-        text: message.text || "",
-        createdAt: message.createdAt,
-        user: this.state.user,
-        image: message.image || "",
-        location: message.location || null,
-    });
-  }
+    addMessages() { 
+        const message = this.state.messages[0];
+        this.referenceChatMessages.add({
+            _id: message._id,
+            text: message.text || "",
+            createdAt: message.createdAt,
+            user: this.state.user,
+            image: message.image || "",
+            location: message.location || null,
+        });
+    }
 
     async saveMessages() {
         try {
@@ -189,9 +187,8 @@ export default class Chat extends React.Component {
             <Bubble
             {...props}
             wrapperStyle={{
-                right: {
-                backgroundColor: '#000'
-                }
+                right: { backgroundColor: '#00bfff' },
+                left: { backgroundColor: 'lightgray' },
             }}
             />
         )
@@ -233,9 +230,7 @@ export default class Chat extends React.Component {
     }
 
     render() {
-
         const { bgcolor } = this.props.route.params;
-
         return (
 
             <View style={{
